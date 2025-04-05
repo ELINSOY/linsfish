@@ -8,14 +8,12 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "FischConfig"
 })
 
--- Tab Utama
 local MainTab = Window:MakeTab({
     Name = "Main",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
--- Label
 MainTab:AddLabel("Script by Elz - Red Fisch UI")
 
 -- Auto Cast
