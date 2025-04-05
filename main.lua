@@ -1,4 +1,4 @@
--- GUI Fisch Merah by Elz (WORKING VERSION)
+-- GUI Fisch Merah by Elz - FINAL FIXED VERSION
 
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 local Window = OrionLib:MakeWindow({
@@ -16,6 +16,10 @@ local MainTab = Window:MakeTab({
 
 MainTab:AddLabel("Script by Elz - Red Fisch UI")
 
+-- Remote references (DISINI ELS FIX-IN BIAR GAK ERROR)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+
 -- Auto Cast
 local autoCast = false
 MainTab:AddToggle({
@@ -24,7 +28,9 @@ MainTab:AddToggle({
     Callback = function(value)
         autoCast = value
         while autoCast do
-            game:GetService("ReplicatedStorage").Remotes.Cast:FireServer()
+            pcall(function()
+                Remotes:FindFirstChild("Cast"):FireServer()
+            end)
             wait(2)
         end
     end
@@ -38,7 +44,9 @@ MainTab:AddToggle({
     Callback = function(value)
         autoShake = value
         while autoShake do
-            game:GetService("ReplicatedStorage").Remotes.Shake:FireServer()
+            pcall(function()
+                Remotes:FindFirstChild("Shake"):FireServer()
+            end)
             wait(1)
         end
     end
@@ -52,7 +60,9 @@ MainTab:AddToggle({
     Callback = function(value)
         autoReel = value
         while autoReel do
-            game:GetService("ReplicatedStorage").Remotes.Reel:FireServer()
+            pcall(function()
+                Remotes:FindFirstChild("Reel"):FireServer()
+            end)
             wait(1)
         end
     end
