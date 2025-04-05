@@ -1,6 +1,5 @@
--- GUI Fisch Merah by Elz
+-- GUI Fisch Merah by Elz (WORKING VERSION)
 
--- Inisialisasi GUI
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
 local Window = OrionLib:MakeWindow({
     Name = "Fisch GUI Merah",
@@ -16,6 +15,9 @@ local MainTab = Window:MakeTab({
     PremiumOnly = false
 })
 
+-- Label
+MainTab:AddLabel("Script by Elz - Red Fisch UI")
+
 -- Auto Cast
 local autoCast = false
 MainTab:AddToggle({
@@ -24,8 +26,8 @@ MainTab:AddToggle({
     Callback = function(value)
         autoCast = value
         while autoCast do
-            -- Perintah Auto Cast di sini
-            wait(1)
+            game:GetService("ReplicatedStorage").Remotes.Cast:FireServer()
+            wait(2)
         end
     end
 })
@@ -38,7 +40,7 @@ MainTab:AddToggle({
     Callback = function(value)
         autoShake = value
         while autoShake do
-            -- Perintah Auto Shake di sini
+            game:GetService("ReplicatedStorage").Remotes.Shake:FireServer()
             wait(1)
         end
     end
@@ -52,11 +54,10 @@ MainTab:AddToggle({
     Callback = function(value)
         autoReel = value
         while autoReel do
-            -- Perintah Auto Reel di sini
+            game:GetService("ReplicatedStorage").Remotes.Reel:FireServer()
             wait(1)
         end
     end
 })
 
--- Selesai
 OrionLib:Init()
